@@ -1,0 +1,119 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
+
+    <title>Query Vessel Traffic Statistics, Pacific 2015-2022</title>
+
+    <!-- Load the Chart.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    
+    <script src="https://js.arcgis.com/4.25/"></script>
+    
+    <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css" />
+
+    <style>
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      #viewDiv {
+        position: absolute;
+        left: 0;
+        right: 40%;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+      }
+      
+      #panel {
+        position: absolute;
+        right: 0;
+        height: 100%;
+        width: 40%;
+        overflow: scroll;
+      }
+      
+      #optionsDiv {
+        background-color: white;
+        color: dark-grey;
+        padding: 10px;
+        width: 375px;
+        position: absolute;
+        left: 15px;
+        right: 15px;
+        bottom: 200px;
+      }
+      
+      
+      #timeSliderDiv {
+        position: absolute;
+        left: 5%;
+        right: 5%;
+        bottom: 0px;
+      }
+      
+      #num-vessels {
+        color: #ed5050;
+        font-size: 36pt;
+        font-weight: bolder;
+        line-height: 0.8;
+      }
+
+      #num-vessels-date {
+        color: #149dcf;
+        font-size: 26pt;
+        font-weight: bolder;
+        line-height: 0.8;
+      }
+      
+      #person-risk {
+        color: #149dcf;
+        font-size: 26pt;
+        font-weight: bolder;
+        line-height: 0.8;
+      }
+    </style>
+    
+  </head>
+
+  <body>
+    <div id="viewDiv"></div>
+    <div id="timeSliderDiv"></div>
+    <div id="panel">
+      <div style="padding: 15px;">
+          <canvas id="total-chart" height="250" width="550"></canvas>
+          <canvas id="date-chart" height="250" width="550"></canvas>
+          <canvas id="vessel-chart" width="200" height="350" style="float:left;"></canvas>
+          <canvas id="vessel-date-chart" width="200" height="350" style="float:left;"></canvas>
+        </div>
+    </div>
+    
+    
+    <!-- div class creates and displays a user selection box -->
+    <div class="esri-widget" id="optionsDiv">
+      <h2>Latitude, Longitude, Radius</h2>
+
+      <!-- allows user selected lat and long-->
+      <select class="esri-widget" id="latInput">
+        <input type="number" name="lat" id="lat" placeholder="Enter Lat" step="0.01" max="180" min = "-180">
+      </select>
+      
+      <select class="esri-widget" id="lonInput">
+        <input type="number" name="lon" id="lon" placeholder="Enter Lon" step="0.01" max="180" min = "-180">
+      </select>
+      
+      <select class="esri-widget" id="radInput">
+        <input type="number" name="rad" id="rad" placeholder="Enter Radius" step="1" max="2000" min = "1">
+      </select>
+
+      <button class="esri-widget" id="doBtn">Do Query</button>
+    </div>
+    </div>
+  </body>
+</html>
